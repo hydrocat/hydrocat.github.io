@@ -9,21 +9,20 @@
     let output = document.getElementById("out");
 
     let lines = Array.from(inputs.value.split("\n"));
-    let entries = lines.map(line => line.split(':')[0]);
+    let entries = lines.map(line => line.split(':')[0].trim());
 
     let questions = {}; // {"name": number, ...}
     for( let i = 0; i < entries.length - 1; i++ ){
-      console.log(questions);
       let name = entries[i];
-      if(!questions[name]){
+      if(questions[name] === undefined ){
         questions[name] = 1;
       }
       
-      if (entries[i+1] !== name)
+      if (entries[i+1] === name)
       {
-        questions[name] = questions[name] ? 1 : questions[name] + 1;
-      } else {
         continue;
+      } else {
+        questions[name]++;
       }
     }
 
