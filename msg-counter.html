@@ -8,7 +8,7 @@
     let inputs =  document.getElementById("in");
     let output = document.getElementById("out");
 
-    let lines = Array.from(inputs.value.split("\n"));
+    let lines = Array.from(inputs.value.trim().split("\n"));
     let entries = lines.map(line => line.split(':')[0].trim());
 
     let questions = {}; // {"name": number, ...}
