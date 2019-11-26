@@ -12,16 +12,21 @@
     let entries = lines.map(line => line.split(':')[0].trim());
 
     let questions = {}; // {"name": number, ...}
+    let msgCount = 1;
     for( let i = 0; i < entries.length - 1; i++ ){
       let name = entries[i];
       if(questions[name] === undefined ){
         questions[name] = 1;
       }
       
-      if (entries[i+1] === name)
+      if (entries[i+1] === name) //next message if from same person
       {
-        continue;
-      } else {
+        msgCount++;
+        if( msgCount >= 3 ){
+          questions[name]++;
+        }
+      } else {                   // next message is from someone else
+        msgCount
         questions[name]++;
       }
     }
@@ -33,9 +38,11 @@
 
 textarea {
     height: 200px;
+    width: 100%;
 }
 
 button {
+    width: 100%;
 }
 
 #asd {
@@ -43,15 +50,20 @@ button {
     margin: 0 auto;
 }
 
-#asd * {
-    width: 100%;
+img {
+    height: 100px;
+    width: 100px;
 }
-  </style>
 
+  </style>
     <title>Question counter</title>
   </head>
   <body>
-    <div id="asd">  
+    <div style="position: absolute; display: block">
+      <img src="kim.png" >
+      <h2 style="font-size: 0.8em">Kim Possible</h2>
+    </div>
+      <div id="asd">
       <textarea id="in"></textarea>
       <br>
       <button onclick="work()">Process!</button>
