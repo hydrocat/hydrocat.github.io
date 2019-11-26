@@ -13,13 +13,13 @@
 
     let questions = {}; // {"name": number, ...}
     let msgCount = 1;
-    for( let i = 0; i < entries.length - 1; i++ ){
+    for( let i = 0; i < entries.length; i++ ){
       let name = entries[i];
       if(questions[name] === undefined ){
         questions[name] = 1;
       }
       
-      if (entries[i+1] === name) //next message if from same person
+      if (i < entries.length -1 && >entries[i+1] === name) //next message if from same person
       {
         msgCount++;
         if( msgCount >= 3 ){
