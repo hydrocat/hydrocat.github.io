@@ -1,11 +1,63 @@
-<html>
-  <head>
-<title>Msg counter</title>
-</head>
-<body>
-  <textarea id="in"></textarea>
-  <input type="button" onclick="do">
-  <textarea id="out"></textarea>
-</body>
-</html>
+<!DOCTYPE html>
 
+<html>
+  <meta charset="UTF-8">
+  <head>
+  <script>
+  function work(){
+    let inputs =  document.getElementById("in");
+    let output = document.getElementById("out");
+
+    let lines = Array.from(inputs.value.split("\n"));
+    let entries = lines.map(line => line.split(':')[0]);
+
+    let questions = {}; // {"name": number, ...}
+    for( let i = 0; i < entries.length - 1; i++ ){
+      console.log(questions);
+      let name = entries[i];
+      if(!questions[name]){
+        questions[name] = 1;
+      }
+      
+      if (entries[i+1] !== name)
+      {
+        questions[name] = questions[name] ? 1 : questions[name] + 1;
+      } else {
+        continue;
+      }
+    }
+
+    output.value = Object.entries(questions).map( e => e.join(":")).join("\n");
+  }
+</script>
+<style>
+
+textarea {
+    height: 200px;
+}
+
+button {
+}
+
+#asd {
+    width: 75%;
+    margin: 0 auto;
+}
+
+#asd * {
+    width: 100%;
+}
+  </style>
+
+    <title>Question counter</title>
+  </head>
+  <body>
+    <div id="asd">  
+      <textarea id="in"></textarea>
+      <br>
+      <button onclick="work()">Process!</button>
+      <br>
+      <textarea id="out"></textarea>
+    </div>
+  </body>
+</html>
